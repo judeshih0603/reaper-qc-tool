@@ -5,7 +5,7 @@ A collection of Lua scripts for REAPER for click-free QC between a Ruff and Stem
 ---
 
 ## Features
-
+* **Automated Setup:** Automatically organizes and colors the ruffs and stems into folders
 * **Pop-Free Audio:** Uses `JS: Volume/Pan Smoother` to perform micro-fades, eliminating the digital "pops" caused by instant volume jumps.
 * **Visual Feedback:** Automatically colors the active track **Green** and the inactive track **Dark Gray**.
 * **Automated A/B:** Includes a playback script that toggles sources every 0.3 seconds for rapid comparison.
@@ -16,6 +16,8 @@ A collection of Lua scripts for REAPER for click-free QC between a Ruff and Stem
 ## Included Scripts
 
 | Script Name | Function |
+
+| **QC_SETUP_v6** | Set up the Ruffs and Stems in an organized structure in Reaper. |
 | **QC_Toggle Solo with Volume_v5** | The core engine. Ramps volumes and updates track colors. |
 | **QC_Auto Playback_v1** | Starts playback from cursor and triggers the toggle every 0.3s. |
 | **QC_Cleanup_v1** | Scans the project and removes all `JS: Volume/Pan Smoother` instances. |
@@ -33,6 +35,13 @@ A collection of Lua scripts for REAPER for click-free QC between a Ruff and Stem
 
 ### 2. Custom Action Configuration
 
+Create a **Custom Action** named `QC SETUP ACTION` assign to the toolbar
+1. `Track: Select all tracks`
+2. `Script: QC_SETUP_v6`
+3. `Track: Select all tracks`
+4. `Script: m2beats_Toggle folder collapsed.lua`
+5. `Track: Select track 01`
+
 Create a **Custom Action** named `QC_Solo_Setting` assigned to shortcut **A**:
 
 1. `Script: QC_Cleanup_JS_v1.lua`
@@ -43,7 +52,9 @@ Create a **Custom Action** named `QC_Solo_Setting` assigned to shortcut **A**:
 
 ### 3. Usage
 
-1. **Initialize:** Select the Ruff track and press **A**. This cleans previous FX and prepares the selection.
+1. **Import:** Import midi (optional), ruffs and stems into Reaper
+2. **Orgainzed:** Execute QC SETUP ACTION from toolbar
+2. **Initialize:** Select the Ruff track and press **A**. This cleans previous FX and prepares the selection.
 2. **Auto QC:** Press **Shift+Space** to begin automated A/B switching from the cursor.
 3. **Manual QC:** Press **V** to manually toggle between sources at any time.
 4. **Stop:** Press **Space** or select any other track to terminate the auto-toggle loop.
@@ -53,4 +64,3 @@ Create a **Custom Action** named `QC_Solo_Setting` assigned to shortcut **A**:
 ## Requirements
 
 * **JSFX:** Requires the stock REAPER plugin `JS: Volume/Pan Smoother`. The script will attempt to add it automatically if missing.
-* **Track Layout:** The script logic depends on the Ruff track being exactly one index above the Stems track.
