@@ -259,7 +259,7 @@ function createFolder(tracksToSelect,tableWithTrackNames, nameOfParentTrack, fol
     clearSelect(tracksToSelect)
     reaper.InsertTrackAtIndex(current_idx,0) ---- create a subfolder below Ruff track
     table.insert(tracksToSelect,tableLength(tracksToSelect)+1) ---- append one more element to the table for adding the subfolder track
-    local subfolder_track = reaper.GetTrack(0,2) 
+    local subfolder_track = reaper.GetTrack(0, current_idx) 
     reaper.SetMediaTrackInfo_Value(subfolder_track, "I_SELECTED", 1) ---- select the subfolder track
 
     ----
@@ -274,7 +274,7 @@ function createFolder(tracksToSelect,tableWithTrackNames, nameOfParentTrack, fol
    
 
 
-    for i, sTrk in ipairs(stemTracks) do
+    for j, sTrk in ipairs(stemTracks) do
       --reaper.SetOnlyTrackSelected(sTrk)
       --reaper.ReorderSelectedTracks(current_idx, 0)
       reaper.SetMediaTrackInfo_Value(sTrk, "I_SELECTED", 1)
@@ -339,6 +339,8 @@ function moveUnSortedTracks()
     parent_track = reaper.GetParentTrack(track)
     if string.match(track_name, "RuffDemo") then
       reaper.SetMediaTrackInfo_Value(track, "I_SELECTED",1)
+
+      --TO DO - Mute the RuffDemo Track
       
     else
       if parent_track == nil then
