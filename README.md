@@ -22,6 +22,8 @@ A collection of Lua scripts for REAPER for click-free QC between a Ruff and Stem
 | **QC_Auto Playback_v1** | Starts playback from cursor and triggers the toggle every 0.3s. |
 | **QC_Cleanup_v1** | Scans the project and removes all `JS: Volume/Pan Smoother` instances. |
 | **QC_Solo_Setting** | (Custom Action) Combines cleanup and track preparation. |
+| **volume_pan** | (Custom Action) Modified Reaper Effect - JS: Volume/Pan Smoother. |
+
 
 ---
 
@@ -32,6 +34,7 @@ A collection of Lua scripts for REAPER for click-free QC between a Ruff and Stem
 1. Add the `.lua` scripts to your REAPER `Scripts` folder.
 2. Import them into the **Actions List**.
 3. Ensure `QC_Toggle Solo with Volume_v5` has a registered **Command ID** that matches the one referenced in `QC_Auto Playback_v1.lua` (currently `_RS69081a9d3a87e17d55f91aa3cc266ff4f29d4a8b`), change the Command ID if needed.
+4. Copy and replace volume_pan to ~/Library/Application Support/REAPER/Effects/utility
 
 ### 2. Custom Action Configuration
 
