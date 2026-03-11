@@ -10,9 +10,14 @@ REAPER_EFFECTS_DIR="$HOME/Library/Application Support/REAPER/Effects/utility"
 
 echo "--- REAPER QC Tool Studio Setup ---"
 
-# Symlink the entire Scripts folder
-echo "Linking the 'Reaper QC Tool' folder..."
-ln -sfn "$REPO_PATH/Scripts" "$REAPER_SCRIPTS_DIR/Reaper QC Tool"
+# Symlink the Scripts
+echo "Linking individual scripts..."
+for script_file in "$REPO_PATH/Scripts"/*.lua; do
+    script_name=$(basename "$script_file")
+    
+    # Create a link for each one directly in the main Scripts folder
+    ln -sf "$script_file" "$REAPER_SCRIPTS_DIR/Reaper QC Tool/$script_name"
+done
 
 # Create the Effects/utility directory if it doesn't exist
 mkdir -p "$REAPER_EFFECTS_DIR"
