@@ -1,4 +1,4 @@
-# REAPER Pop-Free QC Switcher (Studio Version)
+# REAPER QC TOOL
 
 A collection of Lua scripts and custom JSFX for REAPER designed for click-free QC between "Ruff" and "Stem" printed from Bear's GOD TEMPLATE. This system uses JSFX-based volume ramping and visual color-coding to ensure smooth transitions without digital pops during film scoring sessions.
 
