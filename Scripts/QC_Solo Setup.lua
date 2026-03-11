@@ -7,7 +7,7 @@
 -- @provides [main] .
 
 -- This script calls your registered actions in sequence
--- reaper.Main_OnCommand(reaper.NamedCommandLookup("QC_Cleanup_JS"), 0)
+-- reaper.Main_OnCommand(reaper.NamedCommandLookup("QC_Cleanup"), 0)
 reaper.Main_OnCommand(reaper.NamedCommandLookup("_RSd6e0800c1d52f279de551af013bc8db111a85b54"), 0)
 
 reaper.Main_OnCommand(40340, 0) -- Unsolo all tracks

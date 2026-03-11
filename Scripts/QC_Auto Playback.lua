@@ -3,7 +3,7 @@
 -- @author JS
 -- @id JS_QC_Auto_Playback
 -- @about
---   "QC_Toggle Solo with Volume_JS_v1.lua" every 0.3 sec until stopped or if another track is selected.
+--   "QC_Toggle Solo with Volume_v1.lua" every 0.3 sec until stopped or if another track is selected.
 -- @provides [main] .
 
 
@@ -28,11 +28,11 @@ reaper.SetEditCurPos(cursor_pos, false, false)
 reaper.OnPlayButton()
 
 
--- Look for custom command (QC_Toggle Solo with Volume_JS.lua)
+-- Look for custom command (QC_Toggle Solo with Volume.lua)
 local switch_command = reaper.NamedCommandLookup("_RS6e45542d59d68b813857b601f9a39f4fe9d8132b")
 
 if switch_command == 0 then
-    reaper.ShowMessageBox("Could not find the 'QC_Toggle Solo with Volume_JS.lua' command.", "Error", 0)
+    reaper.ShowMessageBox("Could not find the 'QC_Toggle Solo with Volume.lua' command.", "Error", 0)
     reaper.OnStopButton()
     return
 end
