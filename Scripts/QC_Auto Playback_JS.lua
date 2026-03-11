@@ -4,8 +4,7 @@
 -- @id JS_QC_Auto_Playback
 -- @about
 --   "QC_Toggle Solo with Volume_JS_v1.lua" every 0.3 sec until stopped or if another track is selected.
--- @provides
---   [main] .
+-- @provides [main] .
 
 
 -- Stop playback if currently playing

@@ -4,8 +4,7 @@
 -- @id JS_QC_TOGGLE_SOLO_VOLUME
 -- @about
 --   A pop-free A/B testing tool for REAPER using JSFX volume ramping and track coloring for visual feedback.
--- @provides
---   [main] .
+-- @provides [main] .
 
 
 local FADE_TIME = 0.01 

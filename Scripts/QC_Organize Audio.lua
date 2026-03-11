@@ -3,8 +3,7 @@
 -- @author JS
 -- @about
 --   The script groups the corresponding stems and ruff into folders based on the names in Bear's Submix Auxes and Ruffs.
--- @provides
---   [main] .
+-- @provides [main] .
 
 
 function Main()

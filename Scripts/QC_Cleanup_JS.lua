@@ -4,8 +4,7 @@
 -- @id JS_QC_Cleanup
 -- @about
 --   Scans all tracks and removes the JS: Volume/Pan Smoother - QC plugin
--- @provides
---   [main] .
+-- @provides [main] .
 function Main()
     local track_count = reaper.CountTracks(0)
     local removed_count = 0
