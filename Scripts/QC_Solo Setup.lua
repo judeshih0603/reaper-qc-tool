@@ -8,7 +8,7 @@
 
 -- This script calls your registered actions in sequence
 -- reaper.Main_OnCommand(reaper.NamedCommandLookup("QC_Cleanup"), 0)
-reaper.Main_OnCommand(reaper.NamedCommandLookup("_RS488d91e5fb48ebe27651713bdfc28c6e9fd02954"), 0)
+reaper.Main_OnCommand(reaper.NamedCommandLookup("_RSc8641c92b014e680480d546705a00df33673c93c"), 0)
 
 reaper.Main_OnCommand(40340, 0) -- Unsolo all tracks
 reaper.Main_OnCommand(7, 0) -- Toggle solo for selected tracks

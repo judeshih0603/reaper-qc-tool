@@ -5,8 +5,7 @@ cd "$(dirname "$0")"
 REPO_PATH=$(pwd)
 
 # Define REAPER paths for macOS
-REAPER_SCRIPTS_DIR="$HOME/Library/Application Support/REAPER/Scripts"
-REAPER_QC_SCRIPTS_DIR="$REAPER_SCRIPTS_DIR/Reaper QC Tool"
+REAPER_QC_SCRIPTS_DIR="$HOME/Library/Application Support/REAPER/Scripts/Reaper QC Tool"
 REAPER_EFFECTS_DIR="$HOME/Library/Application Support/REAPER/Effects/utility"
 
 echo "--- REAPER QC Tool Studio Setup ---"
@@ -28,7 +27,7 @@ for script_file in "$REPO_PATH/Scripts"/*.lua; do
     script_name=$(basename "$script_file")
     
     # Copy each file into the dedicated subfolder, replacing existing versions (-f)
-    cp -f "$script_file" "$REAPER_QC_SCRIPTS/$script_name"
+    cp -f "$script_file" "$REAPER_QC_SCRIPTS_DIR/$script_name"
 done
 
 
@@ -40,5 +39,5 @@ echo "2. Open the Action List (?)."
 echo "3. Click 'New action...' > 'Load ReaScript...'"
 echo "4. Navigate to the 'Reaper QC Tool' folder and select your scripts."
 echo "Opening folder for Action List import..."
-open "$REAPER_QC_SCRIPTS"
+open "$REAPER_QC_SCRIPTS_DIR"
 read -p "Press enter to close..."
