@@ -14,21 +14,25 @@ echo "--- REAPER QC Tool Studio Setup ---"
 mkdir -p "$REAPER_QC_SCRIPTS_DIR"
 mkdir -p "$REAPER_EFFECTS_DIR"
 
-# Symlink the Scripts
-echo "Linking individual scripts..."
+# Copy the custom JSFX
+# The -f flag forces an overwrite if the file already exists.
+if [ -f "$REPO_PATH/Effects/volume_pan_smoothed_QC" ]; then
+    echo "Installing custom JSFX..."
+    cp -f "$REPO_PATH/Effects/volume_pan_smoothed_QC" "$REAPER_EFFECTS_DIR/volume_pan_smoothed_QC"
+fi
+
+# Individually copy every script into the subfolder
+echo "Installing scripts into 'Reaper QC Tool' folder..."
 for script_file in "$REPO_PATH/Scripts"/*.lua; do
+    # Get the filename
     script_name=$(basename "$script_file")
     
-    # Create a link for each one directly in the main Scripts folder
-    ln -sf "$script_file" "$REAPER_QC_SCRIPTS_DIR/$script_name"
+    # Copy each file into the dedicated subfolder, replacing existing versions (-f)
+    cp -f "$script_file" "$REAPER_QC_SCRIPTS/$script_name"
 done
 
-# Create the Effects/utility directory if it doesn't exist
-mkdir -p "$REAPER_EFFECTS_DIR"
 
-# Symlink the custom JSFX
-echo "Linking custom JSFX..."
-ln -sf "$REPO_PATH/Effects/volume_pan_smoothed_QC" "$REAPER_EFFECTS_DIR/volume_pan_smoothed_QC"
+
 
 echo "--- Setup Complete ---"
 echo "1. Open REAPER."
