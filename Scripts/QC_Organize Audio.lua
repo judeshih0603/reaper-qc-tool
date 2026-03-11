@@ -1,5 +1,15 @@
-function Main()
+-- @description Set up the Ruffs and Stems in an organized structure in Reaper for QC purposes
+-- @version 6.0
+-- @author JS
+-- @about
+--   The script groups the corresponding stems and ruff into folders based on the names in Bear's Submix Auxes and Ruffs.
+-- @provides
+--   [main] .
 
+
+function Main()
+  -- select all tracks
+  reaper.Main_OnCommand(40296, 0)--Track: Select all Tracks
   -- Function to generate a random color
 function random_color()
   local r = math.random(1, 255)
@@ -8,6 +18,7 @@ function random_color()
   return reaper.ColorToNative(r, g, b) -- Convert to REAPER's color format
 end
   
+    
   -- this tables contain words that script uses to filter, feel free to add your own words!
   -- BUT BE CAREFUL, script doesn`t use full-match, it`s more like "does the track name contains this word?"
   -- e.g. if track name is kick12345-abcdefg-159846 it will match with "kick" from namesOfDrumTracks
@@ -120,7 +131,7 @@ end
   
   -- THIS SECTION FROM HERE ----------------------------------------------------------------
   -- is used to insert indexes of all tracks that user selected, to table(tracksToSelect)    
-                                                                 
+                                               
   numberOfTracks = reaper.CountSelectedTracks(0)
                                           
   for i = 0,numberOfTracks-1,1 do
@@ -137,7 +148,7 @@ end
   end
   
   -- this is actual call of function that creates folder
-  
+ 
   createFolder(tracksIndexesThatUserSelected, namesOfStringTracks, stringsParentTrackName, stringsColor)
   createFolder(tracksIndexesThatUserSelected, namesOfWwsTracks, WwsParentTrackName, WwsColor)
   createFolder(tracksIndexesThatUserSelected, namesOfPitchedTracks, pitchedParentTrackName, pitchedColor)
@@ -189,143 +200,114 @@ function colorTracksToParentTrackColor(tracksToColor)
        end
   end
 end  
---[[
--- function creates folder from tracks which names suits to specific table (e.g. namesOfPercBigTracks)
-function createFolder(tracksToSelect, tableWithTrackNames, nameOfParentTrack, folderColor)
-  local ruffTrack = nil
-  local stemTracks = {}
-  local numberOfTracksAddedToTheFolder = 0
 
-  -- 1. Identify Tracks - separate 'Ruff' from the rest
+-- function creates folder from tracks which names suits to specific table (e.g. namesOfPercBigTracks)
+function createFolder(tracksToSelect,tableWithTrackNames, nameOfParentTrack, folderColor)
+
+  local numberOfTracksAddedToTheFolder = 0
+  local ruffTracks = {} -- Changed to a table to handle multiple Ruffs
+  local stemTracks = {}
+  local ruffAmount = 0
   for i = 0, tableLength(tracksToSelect)-1, 1 do
     local track = reaper.GetTrack(0, i)
     local _, track_name = reaper.GetTrackName(track, "")
     
     if contains(tableWithTrackNames, track_name) then
-      if string.match(track_name, "Ruff") then
-        ruffTrack = track
-      else
-        table.insert(stemTracks, track)
-      end
+      reaper.SetMediaTrackInfo_Value(track, "I_SELECTED",1)
       numberOfTracksAddedToTheFolder = numberOfTracksAddedToTheFolder + 1
-    end
-  end
-
-  if numberOfTracksAddedToTheFolder > 1 then
-    -- 2. Create Folders
-    reaper.InsertTrackAtIndex(0, 0) -- Insert track at the begining of the project, it will be parent track
-    local parent_track = reaper.GetTrack(0, 0)
-    reaper.SetMediaTrackInfo_Value(parent_track, "I_FOLDERDEPTH", 1) -- Parent Folder
-    reaper.GetSetMediaTrackInfo_String(parent_track, "P_NAME", nameOfParentTrack, true)
-    reaper.SetTrackColor(parent_track, folderColor)
-
-    -- 3. Position Ruff - Place it directly under Parent Folder
-    if ruffTrack then
-      reaper.SetOnlyTrackSelected(ruffTrack)
-      reaper.ReorderSelectedTracks(1, 0) -- Move to index 1 (under parent)
-      reaper.SetMediaTrackInfo_Value(ruffTrack, "I_FOLDERDEPTH", 0) -- Normal track (not folder)
-    end
-
-    -- 4. Position Stems - Place them inside a subfolder
-    reaper.InsertTrackAtIndex(2, 0) -- Insert "STEMS" track
-    local subfolder_track = reaper.GetTrack(0, 2)
-    reaper.GetSetMediaTrackInfo_String(subfolder_track, "P_NAME", "STEMS", true)
-    reaper.SetMediaTrackInfo_Value(subfolder_track, "I_FOLDERDEPTH", 1) -- Stems Subfolder
-
-    for i, sTrk in ipairs(stemTracks) do
-      reaper.SetOnlyTrackSelected(sTrk)
-      reaper.ReorderSelectedTracks(2 + i, 0) -- Move under the subfolder track
       
-      -- Close the folders on the very last track
+      ----JS: detect if Ruff is missing despite there are stems in this catogery.
 
-      if i == #stemTracks then
-        reaper.SetMediaTrackInfo_Value(sTrk, "I_FOLDERDEPTH", -2) -- CLOSE BOTH FOLDERS
-      else
-        reaper.SetMediaTrackInfo_Value(sTrk, "I_FOLDERDEPTH", 0)
-      end
-    end
-  end
-  clearSelect(tracksToSelect)
-end
-
-
-]]--
-
-
-
-
--- [[ START OF UPDATED BLOCK v7 ]] --
-
-function createFolder(tracksToSelect, tableWithTrackNames, nameOfParentTrack, folderColor)
-  local ruffTracks = {} -- Changed to a table to handle multiple Ruffs
-  local stemTracks = {}
-  local numberOfTracksAddedToTheFolder = 0
-
-  -- 1. COLLECTION: Sort tracks into Ruffs and Stems
-  for i = 0, tableLength(tracksToSelect)-1, 1 do
-    local track = reaper.GetTrack(0, i)
-    if track then
-      local _, track_name = reaper.GetTrackName(track, "")
-      
-      if contains(tableWithTrackNames, track_name) then
-        -- Reset folder depth immediately to "clean" the track before re-grouping
-        reaper.SetMediaTrackInfo_Value(track, "I_FOLDERDEPTH", 0) 
-        
-        if string.match(track_name, "Ruff") then
-          table.insert(ruffTracks, track)
+      if string.match(track_name, "Ruff") then
+        table.insert(ruffTracks, track)
+        ruff_name = track_name
+        ruffAmount = 1
         else
-          table.insert(stemTracks, track)
+        table.insert(stemTracks, track)
         end
-        numberOfTracksAddedToTheFolder = numberOfTracksAddedToTheFolder + 1
-      end
+      ----
     end
   end
 
-  -- 2. CONSTRUCTION: Build independent hierarchy
-  if numberOfTracksAddedToTheFolder > 1 then
-    -- Create Parent Category at the very top of the project
-    reaper.InsertTrackAtIndex(0, 0) 
-    local parent_track = reaper.GetTrack(0, 0)
-    reaper.GetSetMediaTrackInfo_String(parent_track, "P_NAME", nameOfParentTrack, true)
+  if numberOfTracksAddedToTheFolder > 1 then -- validate if there is more than 1 track in the group, dont want to create folder with 1 track
+  
+    if ruffAmount == 0 then
+     Msg("Ruff is missing: " .. nameOfParentTrack)
+    end
+  
+  
+  
+  
+    reaper.InsertTrackAtIndex(0,0) -- insert track at the begining of the project, it will be parent track
+    table.insert(tracksToSelect,tableLength(tracksToSelect)) -- insert one more element to this table, it holds indexes of 
+                                                           -- all tracks that are currently in this project
+          
+    local parent_track = reaper.GetTrack(0,0) -- take this track which i just inserted
+    
     reaper.SetTrackColor(parent_track, folderColor)
-    reaper.SetMediaTrackInfo_Value(parent_track, "I_FOLDERDEPTH", 1) -- START PARENT
+    reaper.GetSetMediaTrackInfo_String(parent_track, "P_NAME" ,nameOfParentTrack, true)
+    reaper.SetMediaTrackInfo_Value(parent_track, "I_SELECTED", 1)
+    reaper.ReorderSelectedTracks(0,1) -- reorder all selected tracks, i need this, because sws - make folder from selected tracks
+                                    -- works only for tracks that are directly in touch with each other
 
+                                    
+    
+    reaper.Main_OnCommandEx(commandID, 0, 0) -- it executes sws make folder from selected tracks (ruff and stems should be all selected)
+                                    
+    -- Move all ruff to the top in parent folder
+    
+    
     local current_idx = 1
-
-    -- 3. POSITION ALL RUFFS: Keep them at the top
-    for _, rTrk in ipairs(ruffTracks) do
+    for i, rTrk in ipairs(ruffTracks) do
       reaper.SetOnlyTrackSelected(rTrk)
-      reaper.ReorderSelectedTracks(current_idx, 0)
+      reaper.ReorderSelectedTracks(1, 1)
       reaper.SetMediaTrackInfo_Value(rTrk, "I_FOLDERDEPTH", 0) -- Inside parent
       current_idx = current_idx + 1
+
     end
 
-    -- 4. POSITION STEMS SUBFOLDER
-    reaper.InsertTrackAtIndex(current_idx, 0) 
-    local subfolder_track = reaper.GetTrack(0, current_idx)
-    reaper.GetSetMediaTrackInfo_String(subfolder_track, "P_NAME", "STEMS", true)
-    reaper.SetMediaTrackInfo_Value(subfolder_track, "I_FOLDERDEPTH", 1) -- START SUBFOLDER
-    current_idx = current_idx + 1
+    ----JS: Add Subfolder
+    clearSelect(tracksToSelect)
+    reaper.InsertTrackAtIndex(current_idx,0) ---- create a subfolder below Ruff track
+    table.insert(tracksToSelect,tableLength(tracksToSelect)+1) ---- append one more element to the table for adding the subfolder track
+    local subfolder_track = reaper.GetTrack(0, current_idx) 
+    reaper.SetMediaTrackInfo_Value(subfolder_track, "I_SELECTED", 1) ---- select the subfolder track
 
-    -- 5. POSITION ALL STEMS
-    for i, sTrk in ipairs(stemTracks) do
-      reaper.SetOnlyTrackSelected(sTrk)
-      reaper.ReorderSelectedTracks(current_idx, 0)
+    ----
+    
+    reaper.SetMediaTrackInfo_Value(parent_track, "I_FOLDERCOMPACT", 0)
+                                
+    
+    
+    
+    
+    ----JS: Adding Stems tracks to subfolder track
+   
+
+
+    for j, sTrk in ipairs(stemTracks) do
+      --reaper.SetOnlyTrackSelected(sTrk)
+      --reaper.ReorderSelectedTracks(current_idx, 0)
+      reaper.SetMediaTrackInfo_Value(sTrk, "I_SELECTED", 1)
       
-      -- If it is the last stem, close BOTH folders
-      if i == #stemTracks then
-        reaper.SetMediaTrackInfo_Value(sTrk, "I_FOLDERDEPTH", -2) -- END SUB + END PARENT
-      else
-        reaper.SetMediaTrackInfo_Value(sTrk, "I_FOLDERDEPTH", 0)
-      end
-      current_idx = current_idx + 1
     end
-  end
-  
-  clearSelect(tracksToSelect)
-end
 
--- [[ END OF UPDATED BLOCK v7 ]] --
+
+    --local ruff_track = reaper.GetTrack(0,1) ----this is the ruff track, which is always going to be the first track in the folder when we do reaper.ReorderSelectedTracks()  
+
+    --reaper.SetMediaTrackInfo_Value(parent_track, "I_SELECTED", 0) -----|   We only want the stems in the subfolder,
+    --reaper.SetMediaTrackInfo_Value(ruff_track, "I_SELECTED", 0) -------|-- therefore these are for diselecting the outer folder & ruff tracK
+
+    
+    
+    reaper.Main_OnCommandEx(commandID, 0, 0) -- it executes sws make folder from selected tracks
+        
+    
+    
+  end
+  clearSelect(tracksToSelect) -- clear selects, this function have already made a folder for selected tracks, so there is no need
+                              -- to hold them selected
+end
 
 -- function unselects all tracks that are currently selected
 -- without this script doesn`t work, because it creates folder from selected tracks, so they have to be unselected
@@ -368,6 +350,8 @@ function moveUnSortedTracks()
     parent_track = reaper.GetParentTrack(track)
     if string.match(track_name, "RuffDemo") then
       reaper.SetMediaTrackInfo_Value(track, "I_SELECTED",1)
+
+      --TO DO - Mute the RuffDemo Track
       
     else
       if parent_track == nil then
@@ -390,7 +374,13 @@ function moveUnSortedTracks()
     reaper.Main_OnCommandEx( moveToTopCommand, 0, 0)
   end
 end
+
+
+reaper.Undo_BeginBlock()
+
 Main()
+reaper.Main_OnCommand(40939, 0) -- Track: Select Track 01
+reaper.Undo_EndBlock("QC_Organize Audio", -1)
     
    
         

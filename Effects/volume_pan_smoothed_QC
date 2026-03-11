@@ -1,4 +1,11 @@
-desc:Volume/Pan Smoother
+-- @description volume_pan_smoothed_QC (Custom Smoother)
+-- @version 1.0
+-- @author JS
+-- @provides
+--   [jsfx] .
+
+
+desc:Volume/Pan Smoother - QC
 //tags: utility gain stereo
 //author: Cockos
 

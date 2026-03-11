@@ -1,5 +1,11 @@
--- Scans all tracks and removes the JS: Volume/Pan Smoother plugin
-
+-- @description Scans all tracks and removes the JS: Volume/Pan Smoother - QC plugin
+-- @version 1.0
+-- @author JS
+-- @id JS_QC_Cleanup
+-- @about
+--   Scans all tracks and removes the JS: Volume/Pan Smoother - QC plugin
+-- @provides
+--   [main] .
 function Main()
     local track_count = reaper.CountTracks(0)
     local removed_count = 0
@@ -9,7 +15,7 @@ function Main()
         local track = reaper.GetTrack(0, i)
         
         -- Look for the specific JSFX
-        local fx_idx = reaper.TrackFX_GetByName(track, "JS: Volume/Pan Smoother", false)
+        local fx_idx = reaper.TrackFX_GetByName(track, "JS: Volume/Pan Smoother - QC", false)
         
         while fx_idx ~= -1 do
             -- Remove the plugin
@@ -17,7 +23,7 @@ function Main()
             removed_count = removed_count + 1
             
             -- Check again for any remaining instances
-            fx_idx = reaper.TrackFX_GetByName(track, "JS: Volume/Pan Smoother", false)
+            fx_idx = reaper.TrackFX_GetByName(track, "JS: Volume/Pan Smoother - QC", false)
         end
     end
     reaper.UpdateArrange()

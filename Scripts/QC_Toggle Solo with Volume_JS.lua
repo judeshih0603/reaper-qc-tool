@@ -1,5 +1,12 @@
--- QC_Toggle_LinearFade_v5.lua
--- Ramps JSFX volume AND updates track colors
+-- @description QC Toggle Solo with Volume
+-- @version 5.0
+-- @author JS
+-- @id JS_QC_TOGGLE_SOLO_VOLUME
+-- @about
+--   A pop-free A/B testing tool for REAPER using JSFX volume ramping and track coloring for visual feedback.
+-- @provides
+--   [main] .
+
 
 local FADE_TIME = 0.01 
 local STEPS = 1 
@@ -7,9 +14,9 @@ local COLOR_ACTIVE = reaper.ColorToNative(0, 255, 0) -- Green
 local COLOR_INACTIVE = reaper.ColorToNative(50, 50, 50) -- Dark Gray
 
 function RampAndVisual(track, start_db, end_db, active)
-    local fx_idx = reaper.TrackFX_GetByName(track, "JS: Volume/Pan Smoother", false)
+    local fx_idx = reaper.TrackFX_GetByName(track, "JS: Volume/Pan Smoother - QC", false)
     if fx_idx == -1 then
-        fx_idx = reaper.TrackFX_AddByName(track, "JS: Volume/Pan Smoother", false, -1)
+        fx_idx = reaper.TrackFX_AddByName(track, "JS: Volume/Pan Smoother - QC", false, -1)
     end
 
     -- Update Visual Color ONLY (Keep selection unchanged)
@@ -43,7 +50,7 @@ function Main()
     
     if not ruffTrk or not stemFldrTrk then return end
 
-    local fx_idx = reaper.TrackFX_GetByName(ruffTrk, "JS: Volume/Pan Smoother", false)
+    local fx_idx = reaper.TrackFX_GetByName(ruffTrk, "JS: Volume/Pan Smoother - QC", false)
     local current_vol = 0
     if fx_idx ~= -1 then
         current_vol = reaper.TrackFX_GetParam(ruffTrk, fx_idx, 0)

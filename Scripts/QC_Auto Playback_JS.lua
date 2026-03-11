@@ -1,10 +1,12 @@
---[[
-Reaper Script: Stop playback if running, then play from cursor and trigger 
-"QC_Toggle Solo with Volume_JS_v1.lua" every 0.5 sec until end of time selection
-Stops playback and triggering if another track is selected
-Author: JS
-Version: 1.7
---]]
+-- @description Automatcally switch between ruffs and stems track
+-- @version 1.0
+-- @author JS
+-- @id JS_QC_Auto_Playback
+-- @about
+--   "QC_Toggle Solo with Volume_JS_v1.lua" every 0.3 sec until stopped or if another track is selected.
+-- @provides
+--   [main] .
+
 
 -- Stop playback if currently playing
 if reaper.GetPlayState() & 1 == 1 then
@@ -27,11 +29,11 @@ reaper.SetEditCurPos(cursor_pos, false, false)
 reaper.OnPlayButton()
 
 
--- Look for custom command (QC_Toggle Solo with Volume_JS_v5.lua)
-local switch_command = reaper.NamedCommandLookup("_RS69081a9d3a87e17d55f91aa3cc266ff4f29d4a8b")
+-- Look for custom command (QC_Toggle Solo with Volume_JS.lua)
+local switch_command = reaper.NamedCommandLookup("_RS9d42fcdd04aa531732e7472782649e5c43d3f454")
 
 if switch_command == 0 then
-    reaper.ShowMessageBox("Could not find the 'QC_Toggle Solo with Volume_JS_v5.lua' command.", "Error", 0)
+    reaper.ShowMessageBox("Could not find the 'QC_Toggle Solo with Volume_JS.lua' command.", "Error", 0)
     reaper.OnStopButton()
     return
 end
