@@ -29,7 +29,7 @@ reaper.OnPlayButton()
 
 
 -- Look for custom command (QC_Toggle Solo with Volume_JS.lua)
-local switch_command = reaper.NamedCommandLookup("_RS9d42fcdd04aa531732e7472782649e5c43d3f454")
+local switch_command = reaper.NamedCommandLookup("_RS6e45542d59d68b813857b601f9a39f4fe9d8132b")
 
 if switch_command == 0 then
     reaper.ShowMessageBox("Could not find the 'QC_Toggle Solo with Volume_JS.lua' command.", "Error", 0)
