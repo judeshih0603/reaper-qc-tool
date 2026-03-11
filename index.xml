@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Reaper QC Tool" commit="0b813ff1be8cc1cb9a8c69f1294fe38e9ad6e60d">
+<index version="1" name="Reaper QC Tool" commit="d9850170bb865a4d5fc982c777bfaabfe154752d">
   <category name="Scripts">
     <reapack name="QC_Auto Playback_JS.lua" type="script" desc="Automatcally switch between ruffs and stems track">
       <metadata>
