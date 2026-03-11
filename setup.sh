@@ -20,17 +20,13 @@ if [ -f "$REPO_PATH/Effects/volume_pan_smoothed_QC" ]; then
     cp -f "$REPO_PATH/Effects/volume_pan_smoothed_QC" "$REAPER_EFFECTS_DIR/volume_pan_smoothed_QC"
 fi
 
-# Individually copy every script into the subfolder
+# Copy scripts into the subfolder
 echo "Installing scripts into 'Reaper QC Tool' folder..."
 for script_file in "$REPO_PATH/Scripts"/*.lua; do
     # Get the filename
     script_name=$(basename "$script_file")
-    
-    # Copy each file into the dedicated subfolder, replacing existing versions (-f)
     cp -f "$script_file" "$REAPER_QC_SCRIPTS_DIR/$script_name"
 done
-
-
 
 
 echo "--- Setup Complete ---"
@@ -41,3 +37,4 @@ echo "4. Navigate to the 'Reaper QC Tool' folder and select your scripts."
 echo "Opening folder for Action List import..."
 open "$REAPER_QC_SCRIPTS_DIR"
 read -p "Press enter to close..."
+
