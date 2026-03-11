@@ -1,5 +1,5 @@
 -- @description Automatcally switch between ruffs and stems track
--- @version 1.0
+-- @version 1.1
 -- @author JS
 -- @id JS_QC_Auto_Playback
 -- @about

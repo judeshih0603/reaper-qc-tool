@@ -1,5 +1,5 @@
 -- @description QC Solo Setup (Macro Wrapper)
--- @version 1.0
+-- @version 1.1
 -- @author JS
 -- @id JS_QC_Solo_Setup
 -- @about
