@@ -18,9 +18,9 @@ A collection of Lua scripts for REAPER for click-free QC between a Ruff and Stem
 | Script Name | Function |
 
 | **QC_Organize Audio** | Set up the Ruffs and Stems in an organized structure in Reaper. |
-| **QC_Toggle Solo with Volume_JS** | The core engine. Ramps volumes and updates track colors. |
-| **QC_Auto Playback_JS** | Starts playback from cursor and triggers the toggle every 0.3s. |
-| **QC_Cleanup_JS** | Scans the project and removes all `JS: Volume/Pan Smoother - QC` instances. |
+| **QC_Toggle Solo with Volume** | The core engine. Ramps volumes and updates track colors. |
+| **QC_Auto Playback** | Starts playback from cursor and triggers the toggle every 0.3s. |
+| **QC_Cleanup** | Scans the project and removes all `JS: Volume/Pan Smoother - QC` instances. |
 | **QC_Solo_Setup** | Combines cleanup and track preparation. |
 | **volume_pan_smoothed_QC** | (Custom Action) Modified Reaper Effect - JS: Volume/Pan Smoother. |
 
