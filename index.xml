@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Reaper QC Tool" commit="354ac2cedabe2c8bc6da41670ed527edf23463c9">
+<index version="1" name="Reaper QC Tool" commit="882ef01d90657f125bb1e727cf5c83511cdb0d17">
   <category name="Scripts">
-    <reapack name="QC_Auto Playback_JS.lua" type="script" desc="Automatcally switch between ruffs and stems track">
+    <reapack name="QC_Auto Playback.lua" type="script" desc="Automatcally switch between ruffs and stems track">
       <metadata>
         <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 "QC_Toggle Solo with Volume_JS_v1.lua" every 0.3 sec until stopped or if another track is selected.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 "QC_Toggle Solo with Volume_v1.lua" every 0.3 sec until stopped or if another track is selected.\par}
 }
 ]]></description>
       </metadata>
-      <version name="1.0" author="JS" time="2026-03-11T07:51:37Z">
-        <source main="main">https://github.com/judeshih0603/reaper-qc-tool/raw/4768ccde751c563253661d228c917c6cf8259318/Scripts/QC_Auto%20Playback_JS.lua</source>
-      </version>
-      <version name="1.1" author="JS" time="2026-03-11T19:50:04Z">
-        <source main="main">https://raw.githubusercontent.com/judeshih0603/reaper-qc-tool/refs/heads/main/Scripts/QC_Auto%20Playback_JS.lua</source>
+      <version name="1.1" author="JS" time="2026-03-11T20:21:05Z">
+        <source main="main">https://raw.githubusercontent.com/judeshih0603/reaper-qc-tool/refs/heads/main/Scripts/QC_Auto%20Playback.lua</source>
       </version>
     </reapack>
-    <reapack name="QC_Cleanup_JS.lua" type="script" desc="Scans all tracks and removes the JS: Volume/Pan Smoother - QC plugin">
+    <reapack name="QC_Cleanup.lua" type="script" desc="Scans all tracks and removes the JS: Volume/Pan Smoother - QC plugin">
       <metadata>
         <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
@@ -28,8 +25,8 @@
 }
 ]]></description>
       </metadata>
-      <version name="1.0" author="JS" time="2026-03-11T07:51:37Z">
-        <source main="main">https://github.com/judeshih0603/reaper-qc-tool/raw/4768ccde751c563253661d228c917c6cf8259318/Scripts/QC_Cleanup_JS.lua</source>
+      <version name="1.0" author="JS" time="2026-03-11T20:21:05Z">
+        <source main="main">https://raw.githubusercontent.com/judeshih0603/reaper-qc-tool/refs/heads/main/Scripts/QC_Cleanup.lua</source>
       </version>
     </reapack>
     <reapack name="QC_Organize Audio.lua" type="script" desc="Set up the Ruffs and Stems in an organized structure in Reaper for QC purposes">
@@ -63,7 +60,7 @@
         <source main="main">https://raw.githubusercontent.com/judeshih0603/reaper-qc-tool/refs/heads/main/Scripts/QC_Solo%20Setup.lua</source>
       </version>
     </reapack>
-    <reapack name="QC_Toggle Solo with Volume_JS.lua" type="script" desc="QC Toggle Solo with Volume">
+    <reapack name="QC_Toggle Solo with Volume.lua" type="script" desc="QC Toggle Solo with Volume">
       <metadata>
         <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
@@ -73,8 +70,8 @@
 }
 ]]></description>
       </metadata>
-      <version name="5.0" author="JS" time="2026-03-11T07:51:37Z">
-        <source main="main">https://github.com/judeshih0603/reaper-qc-tool/raw/4768ccde751c563253661d228c917c6cf8259318/Scripts/QC_Toggle%20Solo%20with%20Volume_JS.lua</source>
+      <version name="5.0" author="JS" time="2026-03-11T20:21:05Z">
+        <source main="main">https://raw.githubusercontent.com/judeshih0603/reaper-qc-tool/refs/heads/main/Scripts/QC_Toggle%20Solo%20with%20Volume.lua</source>
       </version>
     </reapack>
   </category>
