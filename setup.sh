@@ -6,9 +6,13 @@ REPO_PATH=$(pwd)
 
 # Define REAPER paths for macOS
 REAPER_SCRIPTS_DIR="$HOME/Library/Application Support/REAPER/Scripts"
+REAPER_QC_SCRIPTS_DIR="$REAPER_SCRIPTS_DIR/Reaper QC Tool"
 REAPER_EFFECTS_DIR="$HOME/Library/Application Support/REAPER/Effects/utility"
 
 echo "--- REAPER QC Tool Studio Setup ---"
+
+mkdir -p "$REAPER_QC_SCRIPTS_DIR"
+mkdir -p "$REAPER_EFFECTS_DIR"
 
 # Symlink the Scripts
 echo "Linking individual scripts..."
@@ -16,7 +20,7 @@ for script_file in "$REPO_PATH/Scripts"/*.lua; do
     script_name=$(basename "$script_file")
     
     # Create a link for each one directly in the main Scripts folder
-    ln -sf "$script_file" "$REAPER_SCRIPTS_DIR/Reaper QC Tool/$script_name"
+    ln -sf "$script_file" "$REAPER_QC_SCRIPTS_DIR/$script_name"
 done
 
 # Create the Effects/utility directory if it doesn't exist
@@ -31,5 +35,6 @@ echo "1. Open REAPER."
 echo "2. Open the Action List (?)."
 echo "3. Click 'New action...' > 'Load ReaScript...'"
 echo "4. Navigate to the 'Reaper QC Tool' folder and select your scripts."
-echo ""
+echo "Opening folder for Action List import..."
+open "$REAPER_QC_SCRIPTS"
 read -p "Press enter to close..."
