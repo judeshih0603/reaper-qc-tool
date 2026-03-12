@@ -17,10 +17,10 @@ A collection of Lua scripts and custom JSFX for REAPER designed for click-free Q
 
 | File Name | Function |
 | :--- | :--- |
-| **QC_Solo Setup** | **The "A" Key.** Runs cleanup and initializes the solo workflow. |
+| **QC_Solo Setup** | Runs cleanup and initializes the solo workflow. |
 | **QC_Organize Audio** | Organizes tracks into folders and colors them (Single Undo). |
-| **QC_Toggle Solo with Volume** | **The "V" Key.** Ramps volumes and updates colors. |
-| **QC_Auto Playback** | **Shift+Space.** Toggles sources every 0.3s during playback. |
+| **QC_Toggle Solo with Volume** | Ramps volumes and updates colors. |
+| **QC_Auto Playback** | Toggles sources every 0.3s during playback. |
 | **volume_pan_smoothed_QC** | The custom JSFX engine (installed to `/Effects/utility/`). |
 
 ---
