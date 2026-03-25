@@ -5,7 +5,7 @@
 -- @about
 --   Scans all tracks and removes the JS: Volume/Pan Smoother - QC plugin
 -- @provides [main] .
-local function Main()
+local function main()
     local trackCount = reaper.CountTracks(0)
     local removedCount = 0
 
@@ -30,5 +30,5 @@ end
 
 -- Wrap in an Undo block
 reaper.Undo_BeginBlock()
-Main()
+main()
 reaper.Undo_EndBlock("Remove QC Smoother Plugins", -1)

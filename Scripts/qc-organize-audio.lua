@@ -5,8 +5,6 @@
 --   The script groups the corresponding stems and ruff into folders based on the names in Bear's Submix Auxes and Ruffs.
 -- @provides [main] .
 
-
-
 local makeFolderCommand = reaper.NamedCommandLookup("_SWS_MAKEFOLDER")-- this variable holds the sws command ID
 local moveToTopCommand = reaper.NamedCommandLookup("_RS0c82ca99c16b6b0fc43ab21e815fb7e9765efa14")
 local tracksIndexesThatUserSelected = {} -- that table holds indexes of tracks that user selected + parent tracks that are created

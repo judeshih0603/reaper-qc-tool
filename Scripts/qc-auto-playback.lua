@@ -14,7 +14,7 @@ if reaper.GetPlayState() & 1 == 1 then
 end
 
 -- Get cursor position
-local cursor_pos = reaper.GetCursorPosition()
+local cursorPos = reaper.GetCursorPosition()
 
 -- Get the initially selected track (The QC "Master" track)
 local initialTrack = reaper.GetSelectedTrack(0, 0)
@@ -24,7 +24,7 @@ if not initialTrack then
 end
 
 -- Start playback from cursor
-reaper.SetEditCurPos(cursor_pos, false, false)
+reaper.SetEditCurPos(cursorPos, false, false)
 reaper.OnPlayButton()
 
 
@@ -43,7 +43,7 @@ local lastTriggerTime = reaper.time_precise()
 local isRunning = true
 
 -- Function to stop everything cleanly
-local function StopAll()
+local function stopAll()
     if not isRunning then return end
     isRunning = false
     reaper.OnStopButton()
@@ -56,7 +56,7 @@ local function main()
 
     -- Check if playback was stopped manually by the user
     if (reaper.GetPlayState() & 1) == 0 then
-        StopAll()
+        stopAll()
         return
     end
 
@@ -66,7 +66,7 @@ local function main()
     local currentTrack = reaper.GetSelectedTrack(0, 0)
     if currentTrack ~= initialTrack then
         reaper.OnStopButton() -- Stop playback if user clicks away
-        StopAll()
+        stopAll()
         return
     end
 
