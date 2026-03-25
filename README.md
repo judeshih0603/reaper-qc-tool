@@ -1,6 +1,6 @@
 # REAPER QC TOOL
 
-A collection of Lua scripts and custom JSFX for REAPER designed for click-free QC between "Ruff" and "Stem" printed from Bear's GOD TEMPLATE. This system uses JSFX-based volume ramping and visual color-coding to ensure smooth transitions without digital pops during film scoring sessions.
+A collection of Lua scripts and custom JSFX for REAPER designed for click-free QC between "Ruff" and "Stem" printed from Bear's TEMPLATE. This system uses JSFX-based volume ramping and visual color-coding to ensure smooth transitions without digital pops during film scoring sessions.
 
 ---
 
@@ -70,4 +70,3 @@ Assign **QC_Organize Audio** to the main toolbar or a key
 
 ---
 
-_Maintained for the film scoring workflow of shihaoting. Optimized for hand-off to Ryan Sanchez_.

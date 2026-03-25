@@ -1,6 +1,6 @@
 -- @description Set up the Ruffs and Stems in an organized structure in Reaper for QC purposes
 -- @version 6.0
--- @author JS & DA
+-- @author @hellojudes & DA
 -- @about
 --   The script groups the corresponding stems and ruff into folders based on the names in Bear's Submix Auxes and Ruffs.
 -- @provides [main] .
