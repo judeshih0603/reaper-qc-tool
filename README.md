@@ -17,10 +17,10 @@ A collection of Lua scripts and custom JSFX for REAPER designed for click-free Q
 
 | File Name | Function |
 | :--- | :--- |
-| **QC_Solo Setup** | Runs cleanup and initializes the solo workflow. |
-| **QC_Organize Audio** | Organizes tracks into folders and colors them (Single Undo). |
-| **QC_Toggle Solo with Volume** | Ramps volumes and updates colors. |
-| **QC_Auto Playback** | Toggles sources every 0.3s during playback. |
+| **qc-solo-setup** | Runs cleanup and initializes the solo workflow. |
+| **qc-organize-audio** | Organizes tracks into folders and colors them (Single Undo). |
+| **qc-toggle-solo-with-volume** | Ramps volumes and updates colors. |
+| **qc-auto-playback** | Toggles sources every 0.3s during playback. |
 | **volume_pan_smoothed_QC** | The custom JSFX engine (installed to `/Effects/utility/`). |
 
 ---
@@ -45,21 +45,21 @@ This toolkit is distributed via a private repository. Your public SSH key must b
 ### 2. Hotkey Configuration (Optional)
 Assign the following keys in the REAPER Action List for the intended workflow:
 
-* **A:** `QC_Solo Setup.lua`
-* **V:** `QC_Toggle Solo with Volume.lua`
-* **Shift + Space:** `QC_Auto Playback.lua`
+* **A:** `qc-solo-setup.lua`
+* **V:** `qc-toggle-solo-with-volume.lua`
+* **Shift + Space:** `qc-auto-playback.lua`
 
-Assign **QC_Organize Audio** to the main toolbar or a key
+Assign **qc-organize-audio** to the main toolbar or a key
 
 ---
 
 ### 3. Usage
 
 1. **Import:** Import midi (optional), ruffs and stems into Reaper
-2. **Orgainzed:** Execute **QC_Organize Audio** from toolbar
-2. **Solo Setup:** Select a parent folder track (e.g., STRINGS) and run **QC_Solo Setup** (press **A**). This cleans previous FX and prepares the selection. The Ruff track and the subfolder containing stems will be selected.
-2. **Auto QC:** Run **QC_Auto Playback_JS** (Press **Shift+Space**) to begin automated A/B switching from the cursor.
-3. **Manual QC:** Run **QC_Toggle Solo with Volume_JS** (Press **V**) to manually toggle between sources at any time.
+2. **Orgainzed:** Execute **qc-organize-audio** from toolbar
+2. **Solo Setup:** Select a parent folder track (e.g., STRINGS) and run **qc-solo-setup** (press **A**). This cleans previous FX and prepares the selection. The Ruff track and the subfolder containing stems will be selected.
+2. **Auto QC:** Run **qc-auto-playback_JS** (Press **Shift+Space**) to begin automated A/B switching from the cursor.
+3. **Manual QC:** Run **qc-toggle-solo-with-volume_JS** (Press **V**) to manually toggle between sources at any time.
 4. **Stop:** Press **Space** or select any other track to terminate the auto-toggle loop.
 
 ---
