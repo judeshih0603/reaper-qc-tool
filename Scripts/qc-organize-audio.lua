@@ -45,11 +45,10 @@ local function contains(tab,name)
   return false
 end
 
-local clearSelect
 -- function unselects all tracks that are currently selected
 -- without this script doesn`t work, because it creates folder from selected tracks, so they have to be unselected
 -- after script creates a folder from them
-clearSelect = function(tracksToSelect)
+local function clearSelect(tracksToSelect)
   for i = 0, tableLength(tracksToSelect)-1, 1 do
     local track = reaper.GetTrack(0, i)
     reaper.SetMediaTrackInfo_Value(track, "I_SELECTED",0)
@@ -100,9 +99,9 @@ local function colorTracksToParentTrackColor(tracksToColor)
   end
 end  
 
-local createFolder
+
 -- function creates folder from tracks which names suits to specific table (e.g. namesOfPercBigTracks)
-createFolder = function(tracksToSelect,tableWithTrackNames, nameOfParentTrack, folderColor)
+local function createFolder(tracksToSelect,tableWithTrackNames, nameOfParentTrack, folderColor)
 
   local numberOfTracksAddedToTheFolder = 0
   local ruffTrks = {} -- Changed to a table to handle multiple Ruffs
@@ -133,9 +132,6 @@ createFolder = function(tracksToSelect,tableWithTrackNames, nameOfParentTrack, f
     if ruffAmount == 0 then
       msg("Ruff is missing: " .. nameOfParentTrack)
     end
-  
-  
-  
   
     reaper.InsertTrackAtIndex(0,0) -- insert track at the begining of the project, it will be parent track
     table.insert(tracksToSelect,tableLength(tracksToSelect)) -- insert one more element to this table, it holds indexes of 

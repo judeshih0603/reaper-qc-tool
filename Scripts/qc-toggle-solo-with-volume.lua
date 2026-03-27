@@ -26,11 +26,11 @@ local function rampAndVisual(track, startDb, endDb, active)
     end
 
     -- Audio Ramp Logic
-    local DbPerStep = (endDb - startDb) / steps
+    local dbPerStep = (endDb - startDb) / steps
     local currentStep = 0
     local function fadeLoop()
         if currentStep <= steps then
-            local nextDb = startDb + (DbPerStep * currentStep)
+            local nextDb = startDb + (dbPerStep * currentStep)
             reaper.TrackFX_SetParam(track, fxId, 0, nextDb)
             currentStep = currentStep + 1
             reaper.defer(fadeLoop)
