@@ -61,7 +61,7 @@ local function moveUnSortedTracks()
   for i = 0, totalTracksAmount-1, 1 do
     local track = reaper.GetTrack(0, i)
     local _, track_name = reaper.GetTrackName(track, "")
-    parentTrk = reaper.GetParentTrack(track)
+    local parentTrk = reaper.GetParentTrack(track)
     if string.match(track_name, "RuffDemo") then
       reaper.SetMediaTrackInfo_Value(track, "I_SELECTED",1)
 
@@ -69,7 +69,7 @@ local function moveUnSortedTracks()
       
     else
       if parentTrk == nil then
-        color = reaper.GetTrackColor(track)
+        local color = reaper.GetTrackColor(track)
         
         if color == 0 then
           msg("Unsorted Track: " ..track_name)
@@ -201,102 +201,102 @@ end
   -- e.g. if track name is kick12345-abcdefg-159846 it will match with "kick" from namesOfDrumTracks
   -- so if you add for example "T" as a word in same table, it wouldn`t work correctly!
   -- size of letters doesn`t matter
-  namesOfPercBigTracks = {"RuffPercBig", "shimes", "frames", "middrums", "kick", "snare", "tom", "PercBig", "LowDrums", "Taikos", "BassDrum", "timp", "loops"}
-  namesOfPercSmallTracks = {"PercSmall", "scrapes" , "Japanese", "Changs", "Cymbs", "Rims", "Metal", "Shakers", "Perc Small", "Tambourine", "Triangle", "Wood", "Ambient", "MarkTree" , "Junk", "GreekSmall", "Perc Japanese"}
-  namesOfStringTracks = {"Strs", "Str" , "OrchLong" , "OrchFx Strs" }
-  namesOfChoirTracks = {"voc", "vox", "choir"}
-  --namesOfSynthTracks = { "RuffSynth", "SynthLead", "Synth1", "Synth2", "Synth3", "Synth4", "Synth5", "SynthArp", "Elec Hits"}
-  namesOfGuitarTracks = {"GTR", "guitar"}
-  namesOfPitchedTracks = {"piano" , "Mallet" , "Dulcimer" , "Pitched" , "celeste"}
-  namesOfBrassTracks = {"Brs"}
-  namesOfWwsTracks = {"Wws", "Ww" }
-  namesOfHarpTracks = {"Harp" }
-  namesOfvdgTracks = {"vdg"}
-  namesOfvcTracks = {"Qtet" , "Vc"}
-  namesOfTanburTracks = {"Tanbur"}
-  namesOfFiddleTracks = {"Fiddle"}
-  namesOfPercDumbeksTracks = {"Dumbeks"}
-  namesOfNyckTracks = {"Nyck"}
-  namesOfGadulkaTracks = {"Gadulka"}
-  namesOfOrchFxTracks = {"Bartok", "RuffOrchFx" , "OrchFx Misc"}
-  namesOfBoneFluteTracks = { "Ethnc" , "BoneFlute" , "FxEthnic" }
-  namesOfBagpipesTracks = { "Bagpipes" , "Bagpipe" }
+  local namesOfPercBigTracks = {"RuffPercBig", "shimes", "frames", "middrums", "kick", "snare", "tom", "PercBig", "LowDrums", "Taikos", "BassDrum", "timp", "loops"}
+  local namesOfPercSmallTracks = {"PercSmall", "scrapes" , "Japanese", "Changs", "Cymbs", "Rims", "Metal", "Shakers", "Perc Small", "Tambourine", "Triangle", "Wood", "Ambient", "MarkTree" , "Junk", "GreekSmall", "Perc Japanese"}
+  local namesOfStringTracks = {"Strs", "Str" , "OrchLong" , "OrchFx Strs" }
+  local namesOfChoirTracks = {"voc", "vox", "choir"}
+--namesOfSynthTracks = { "RuffSynth", "SynthLead", "Synth1", "Synth2", "Synth3", "Synth4", "Synth5", "SynthArp", "Elec Hits"}
+  local namesOfGuitarTracks = {"GTR", "guitar"}
+  local namesOfPitchedTracks = {"piano" , "Mallet" , "Dulcimer" , "Pitched" , "celeste"}
+  local namesOfBrassTracks = {"Brs"}
+  local namesOfWwsTracks = {"Wws", "Ww" }
+  local namesOfHarpTracks = {"Harp" }
+  local namesOfvdgTracks = {"vdg"}
+  local namesOfvcTracks = {"Qtet" , "Vc"}
+  local namesOfTanburTracks = {"Tanbur"}
+  local namesOfFiddleTracks = {"Fiddle"}
+  local namesOfPercDumbeksTracks = {"Dumbeks"}
+  local namesOfNyckTracks = {"Nyck"}
+  local namesOfGadulkaTracks = {"Gadulka"}
+  local namesOfOrchFxTracks = {"Bartok", "RuffOrchFx" , "OrchFx Misc"}
+  local namesOfBoneFluteTracks = { "Ethnc" , "BoneFlute" , "FxEthnic" }
+  local namesOfBagpipesTracks = { "Bagpipes" , "Bagpipe" }
  -- namesOfSynth8bitTracks = { "SynthNES", "NoiseNES", "SEGA", "8Bit" }
  -- namesOfSynth16bitTracks = { "SNES", "SEGA", "16Bit" }  
-  namesOfGtrBouzoukiTracks = { "Bouzouki" }
-  namesOfDrumTracks = { "Drm", "Drumkit" }
-  namesOfPercElecTracks = { "#Elec", "PercElec" }
-  namesOfCitharaTracks = { "Cithara" }
-  namesOfBassTracks = { "RuffBass", "#Bass " }
-  namesOfSoloVlnTracks = { "SoloVln", "ElecVln", "Solo Vln" }  
-  namesOfSnareTracks = { "Snare", }
-  namesOfSynthTracks = { "Synth", "SynthArp"}
+  local namesOfGtrBouzoukiTracks = { "Bouzouki" }
+  local namesOfDrumTracks = { "Drm", "Drumkit" }
+  local namesOfPercElecTracks = { "#Elec", "PercElec" }
+  local namesOfCitharaTracks = { "Cithara" }
+  local namesOfBassTracks = { "RuffBass", "#Bass " }
+  local namesOfSoloVlnTracks = { "SoloVln", "ElecVln", "Solo Vln" }  
+  local namesOfSnareTracks = { "Snare", }
+  local namesOfSynthTracks = { "Synth", "SynthArp"}
 
 
   -- this variables contain names of parent(folder) tracks
   -- edit them if you want, by putting a word between quotation marks ""
   -- e.g. default: drumsParentTrackName = "DRUMS" 
   --      edited:  drumsParentTrackName = "MY DRUMS"
-  guitarsParentTrackName = "GUITARS"
-  stringsParentTrackName = "STRINGS"
-  WwsParentTrackName = "WWS"
-  pitchedParentTrackName = "PITCHED"
-  brassParentTrackName = "BRASS"
-  PercBigParentTrackName = "PERC BIG"
-  choirParentTrackName = "CHOIR"
-  PercSmallParentTrackName = "PERC SMALL"
-  HarpParentTrackName = "HARPS"
-  vdgParentTrackName = "SOLO VDG"
-  vcParentTrackName = "SOLO VC"
-  tanburParentTrackName = "SOLO TANBUR"
-  fiddleParentTrackName = "SOLO FIDDLE"
-  nyckParentTrackName = "SOLO NYCKELHARPA"
-  percDumbekstTrackName = "PERC DUMBEKS"
-  gadulkaTrackName = "SOLO GADULKA"
-  orchfxTrackName = "ORCH FX"
-  bonefluteTrackName = "BONE FLUTES"
-  bagpipesTrackName = "SOLO BAGPIPES"
-  --synth8bitTrackName = "SYNTH 8 BIT"
-  --synth16bitTrackName = "SYNTH 16 BIT"
-  gtrBouzoukiTrackName = "GTR BOUZOUKI"
-  drumTrackName = "DRUM"
-  percElecTrackName = "PERC ELEC"
-  citharaTrackName = "CITHARA"
-  bassParentTrackName = "BASS"
-  soloVlnParentTrackName = "SOLO VLN"
-  snareParentTrackName = "SNARE"
-  synthsParentTrackName = "SYNTHS"
+  local guitarsParentTrackName = "GUITARS"
+  local stringsParentTrackName = "STRINGS"
+  local WwsParentTrackName = "WWS"
+  local pitchedParentTrackName = "PITCHED"
+  local brassParentTrackName = "BRASS"
+  local PercBigParentTrackName = "PERC BIG"
+  local choirParentTrackName = "CHOIR"
+  local PercSmallParentTrackName = "PERC SMALL"
+  local HarpParentTrackName = "HARPS"
+  local vdgParentTrackName = "SOLO VDG"
+  local vcParentTrackName = "SOLO VC"
+  local tanburParentTrackName = "SOLO TANBUR"
+  local fiddleParentTrackName = "SOLO FIDDLE"
+  local nyckParentTrackName = "SOLO NYCKELHARPA"
+  local percDumbekstTrackName = "PERC DUMBEKS"
+  local gadulkaTrackName = "SOLO GADULKA"
+  local orchfxTrackName = "ORCH FX"
+  local bonefluteTrackName = "BONE FLUTES"
+  local bagpipesTrackName = "SOLO BAGPIPES"
+--synth8bitTrackName = "SYNTH 8 BIT"
+--synth16bitTrackName = "SYNTH 16 BIT"
+  local gtrBouzoukiTrackName = "GTR BOUZOUKI"
+  local drumTrackName = "DRUM"
+  local percElecTrackName = "PERC ELEC"
+  local citharaTrackName = "CITHARA"
+  local bassParentTrackName = "BASS"
+  local soloVlnParentTrackName = "SOLO VLN"
+  local snareParentTrackName = "SNARE"
+  local synthsParentTrackName = "SYNTHS"
 
   -- this variables contain colors of folders is RGB
   -- edit this to set your own color
-  guitarsColor = randomColor()
-  stringsColor = randomColor()
-  WwsColor   = randomColor()
-  pitchedColor  = randomColor()
-  brassColor  = randomColor()
-  percbigColor   = randomColor()
-  choirColor  = randomColor()
-  percsmallColor   = randomColor()
-  harpColor   = randomColor()
-  vdgColor   = randomColor()
-  vcColor   = randomColor()
-  tanburColor = randomColor()
-  fiddleColor = randomColor()
-  nyckColor = randomColor ()
-  gadulkaColor = randomColor()
-  orchfxColor = randomColor()
-  bonefluteColor = randomColor()
-  bagpipesColor = randomColor()
+  local guitarsColor = randomColor()
+  local stringsColor = randomColor()
+  local WwsColor   = randomColor()
+  local pitchedColor  = randomColor()
+  local brassColor  = randomColor()
+  local percbigColor   = randomColor()
+  local choirColor  = randomColor()
+  local percsmallColor   = randomColor()
+  local harpColor   = randomColor()
+  local vdgColor   = randomColor()
+  local vcColor   = randomColor()
+  local tanburColor = randomColor()
+  local fiddleColor = randomColor()
+  local nyckColor = randomColor ()
+  local gadulkaColor = randomColor()
+  local orchfxColor = randomColor()
+  local bonefluteColor = randomColor()
+  local bagpipesColor = randomColor()
   --synth8bitColor = randomColor()
   --synth16bitColor = randomColor()
-  gtrBouzoukiColor = randomColor()
-  drumColor = randomColor()
-  percElecColor = randomColor()
-  citharaColor = randomColor()
-  bassColor = randomColor()
-  soloVlnColor = randomColor()
-  snareColor = randomColor()
-  synthsColor  = randomColor()
+  local gtrBouzoukiColor = randomColor()
+  local drumColor = randomColor()
+  local percElecColor = randomColor()
+  local citharaColor = randomColor()
+  local bassColor = randomColor()
+  local soloVlnColor = randomColor()
+  local snareColor = randomColor()
+  local synthsColor  = randomColor()
   
   
   -- THIS SECTION FROM HERE ----------------------------------------------------------------
@@ -344,7 +344,7 @@ end
   createFolder(tracksIndexesThatUserSelected, namesOfSnareTracks, snareParentTrackName, snareColor)
   createFolder(tracksIndexesThatUserSelected, namesOfSynthTracks, synthsParentTrackName, synthsColor)
   
-  moveUnSortedTracks(tracksToSelect)
+  moveUnSortedTracks()
 
   colorTracksToParentTrackColor(tracksIndexesThatUserSelected)
 end  
